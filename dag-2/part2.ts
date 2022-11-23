@@ -14,12 +14,10 @@
       };
     })
     .filter((parts) => {
-      const count = [...parts.password].reduce(
-        (agg, val) => agg + (val === parts.char ? 1 : 0),
-        0,
-      );
+      const x = parts.password.charAt(parts.min - 1) === parts.char;
+      const y = parts.password.charAt(parts.max - 1) === parts.char;
 
-      return count >= parts.min && count <= parts.max;
+      return ((x || y) && !(x && y));
     });
 
   console.log(input.length);
